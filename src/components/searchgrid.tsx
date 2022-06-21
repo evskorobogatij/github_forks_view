@@ -10,7 +10,7 @@ export const SearchGrid = (): JSX.Element => {
 
   return (
     <>
-      <div style={{ width: '100%', height: 600 }}>
+      <div style={{ width: '100%', height: 560 }}>
         <DataGrid
           rows={[]}
           columns={columns}
