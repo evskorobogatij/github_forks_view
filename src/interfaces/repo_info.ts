@@ -8,6 +8,7 @@ export interface RepoInfo {
   forks: number
   stargazers_count: number
   description: string
+  fork: boolean
 }
 
 export interface NotFoundRepo {
