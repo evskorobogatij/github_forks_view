@@ -20,7 +20,9 @@
       "@store/*":["store/*"],
       "@pages/*":["pages/*"],
       "@api/*":["api/*"],
-      "@components/*":["components/*"]
+      "@components/*":["components/*"],
+      "@interfaces/*":["interfaces/*"],
+      "@app/*":["app/*"]
     }
   },
   "include": ["src"],
