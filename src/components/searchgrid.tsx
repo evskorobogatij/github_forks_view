@@ -5,11 +5,15 @@ import { useEffect, useMemo } from 'react'
 import { RenderOwner } from './cells/owner'
 import { RenderRepoName } from './cells/repo_name'
 import { useSearchParams } from 'react-router-dom'
+import { RenderLink } from './cells/link'
 
 export const SearchGrid = (): JSX.Element => {
   const forks_url = useAppSelector((state) => state.repoInfo.info?.forks_url)
   const [searchParams] = useSearchParams()
-  const page = useMemo(() => Number(searchParams.get('page') || 1), [searchParams])
+  const page = useMemo(
+    () => Number(searchParams.get('page') || 1),
+    [searchParams]
+  )
   const { loading, forks } = useAppSelector((state) => state.repoForks)
 
   const dispatch = useAppDispatch()
@@ -32,6 +36,12 @@ export const SearchGrid = (): JSX.Element => {
       headerName: 'Кол-во звезд',
       width: 210,
       type: 'number'
+    },
+    {
+      field: 'html_url',
+      headerName: 'Ссылка',
+      flex: 1,
+      renderCell: RenderLink
     },
     { field: 'isFavorite', headerName: 'Избранное', width: 140 }
   ]

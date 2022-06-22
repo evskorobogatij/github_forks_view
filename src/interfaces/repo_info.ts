@@ -1,7 +1,6 @@
-
 export interface OwnerInfo {
   login: string
-    avatar_url: string
+  avatar_url: string
 }
 export interface RepoInfo {
   name: string
@@ -12,6 +11,7 @@ export interface RepoInfo {
   description: string
   fork: boolean
   forks_url: string
+  html_url: string
 }
 
 export interface NotFoundRepo {
