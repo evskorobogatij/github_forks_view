@@ -8,12 +8,14 @@ import { useAppDispatch, useAppSelector } from '@app/hooks'
 import { useEffect, useMemo } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { NotFound } from '@components/not_found'
+import { SearchPagination } from './pagination'
 
 const MainContainer = styled('main')(({ theme }) => ({
   flexGrow: 1,
   padding: theme.spacing(3),
   display: 'flex',
-  flexDirection: 'column'
+  flexDirection: 'column',
+  gap: theme.spacing(2)
 }))
 
 export const SearchResult = (): JSX.Element => {
@@ -35,13 +37,14 @@ export const SearchResult = (): JSX.Element => {
 
   return (
     <>
-      <Stack sx={{height: '100vh'}}>
+      <Stack sx={{ height: '100vh' }}>
         <AppToolbar />
         <MainContainer>
           <Toolbar />
           {!error ? (
             <>
               <RepoInfoCard />
+              <SearchPagination />
               <SearchGrid />
             </>
           ) : (

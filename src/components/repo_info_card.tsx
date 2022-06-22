@@ -6,7 +6,7 @@ export const RepoInfoCard = () => {
   const { info, loading } = useAppSelector((state) => state.repoInfo)
   return (
     <>
-      <Card sx={{ marginBottom: (theme) => theme.spacing(3) }}>
+      <Card>
         <CardHeader title={'Сведения о репозитории'} />
         <CardContent>
           <Grid container direction={'row'} spacing={4}>

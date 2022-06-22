@@ -10,10 +10,9 @@ export const getRepoInfo = async (full_name: string) => {
   else throw new Error('Репозиторий не найден')
 }
 
-
-export const getRepoForks = async (url: string) => {
-  const res = await fetch(url)
+export const getRepoForks = async (url: string, page = 1 ) => {
+  const res = await fetch(`${url}?page=${page}`)
   const data = await res.json()
-  if(Array.isArray(data)) return data as ReposList
+  if (Array.isArray(data)) return data as ReposList
   else throw new Error('Ошибка получения форков')
 }

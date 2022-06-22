@@ -13,10 +13,15 @@ const initialState: RepoForkState = {
   forks: []
 }
 
+interface RepoForksFxProps {
+  url: string
+  page: number
+}
+
 export const loadRepoForksFx = createAsyncThunk(
   'repoForks/load',
-  async (url: string) => {
-    const res = await getRepoForks(url)
+  async ({ url, page }: RepoForksFxProps) => {
+    const res = await getRepoForks(url, page)
     return res
   }
 )

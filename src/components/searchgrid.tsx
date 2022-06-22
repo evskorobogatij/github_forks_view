@@ -1,13 +1,15 @@
 import { useAppDispatch, useAppSelector } from '@app/hooks'
 import { DataGrid, GridColDef } from '@mui/x-data-grid'
 import { loadRepoForksFx } from '@store/repoForks/repoForksSlice'
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 import { RenderOwner } from './cells/owner'
 import { RenderRepoName } from './cells/repo_name'
-
+import { useSearchParams } from 'react-router-dom'
 
 export const SearchGrid = (): JSX.Element => {
   const forks_url = useAppSelector((state) => state.repoInfo.info?.forks_url)
+  const [searchParams] = useSearchParams()
+  const page = useMemo(() => Number(searchParams.get('page') || 1), [searchParams])
   const { loading, forks } = useAppSelector((state) => state.repoForks)
 
   const dispatch = useAppDispatch()
@@ -35,8 +37,8 @@ export const SearchGrid = (): JSX.Element => {
   ]
 
   useEffect(() => {
-    if (forks_url) dispatch(loadRepoForksFx(forks_url))
-  }, [dispatch, forks_url])
+    if (forks_url && page) dispatch(loadRepoForksFx({ url: forks_url, page }))
+  }, [dispatch, forks_url, page])
 
   return (
     <>
