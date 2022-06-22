@@ -1,14 +1,7 @@
 import {
-  Container,
-  FormControl,
-  IconButton,
-  InputAdornment,
-  InputLabel,
-  OutlinedInput
-} from '@mui/material'
-import ClearIcon from '@mui/icons-material/Clear'
+  Container} from '@mui/material'
 import { styled } from '@mui/system'
-import { useState } from 'react'
+import { SearchLine } from '@components/search_line'
 
 const MainContainer = styled(Container)(() => ({
   height: '100vh',
@@ -18,36 +11,10 @@ const MainContainer = styled(Container)(() => ({
 }))
 
 export const Main = () => {
-  const [search, setSearch] = useState('')
 
-  const clearSearch = () => {
-    setSearch('')
-  }
   return (
     <MainContainer>
-      <FormControl variant={'outlined'} fullWidth /*className={classes.find} */>
-        <InputLabel htmlFor={'printer-find'}>Поиск</InputLabel>
-        <OutlinedInput
-          id={'employee-find'}
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          label={'Поиск'}
-          placeholder={
-            'Введите имя репозитория в формате владелец/имя_репозитория и нажмите <Enter>'
-          }
-          endAdornment={
-            <>
-              {search && (
-                <InputAdornment position={'end'}>
-                  <IconButton onClick={() => clearSearch()} size="large">
-                    <ClearIcon />
-                  </IconButton>
-                </InputAdornment>
-              )}
-            </>
-          }
-        />
-      </FormControl>
+      <SearchLine />
     </MainContainer>
   )
 }
