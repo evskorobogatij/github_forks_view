@@ -22,11 +22,23 @@ export const ParamItem = ({ title, value }: ParamItemProps) => {
         padding: 0
       }}
     >
-      <Typography variant="body1" component={'div'}>
+      <Typography
+        variant="body1"
+        component={'div'}
+        sx={{ color: (theme) => theme.palette.text.secondary }}
+      >
         {title}
       </Typography>
       {value !== undefined ? (
-        <Typography variant="body1" component={'div'} sx={{ flexGrow: 1 }}>
+        <Typography
+          variant="body1"
+          component={'div'}
+          sx={{
+            flexGrow: 1,
+            color: (theme) => theme.palette.primary.dark,
+            fontWeight: (theme) => theme.typography.fontWeightBold
+          }}
+        >
           {value}
         </Typography>
       ) : (

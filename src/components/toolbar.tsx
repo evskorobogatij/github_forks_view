@@ -1,6 +1,8 @@
 import { AppBar, IconButton, Toolbar, Typography } from '@mui/material'
 import HomeIcon from '@mui/icons-material/Home'
 import { useNavigate } from 'react-router-dom'
+import { SearchLine } from './search_line'
+import { ToolbarSearch } from './toolbar_search'
 
 export const AppToolbar = (): JSX.Element => {
   const navigate = useNavigate()
@@ -31,6 +33,7 @@ export const AppToolbar = (): JSX.Element => {
         <Typography variant="h6" sx={{ flexGrow: 1 }}>
           Просмотр форков
         </Typography>
+        <ToolbarSearch />
       </Toolbar>
     </AppBar>
   )
