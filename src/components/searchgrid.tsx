@@ -1,24 +1,10 @@
 import { useAppDispatch, useAppSelector } from '@app/hooks'
-import { OwnerInfo } from '@interfaces/repo_info'
-import { Avatar } from '@mui/material'
-import { DataGrid, GridColDef, GridRenderCellParams } from '@mui/x-data-grid'
+import { DataGrid, GridColDef } from '@mui/x-data-grid'
 import { loadRepoForksFx } from '@store/repoForks/repoForksSlice'
 import { useEffect } from 'react'
+import { RenderOwner } from './cells/owner'
 import { RenderRepoName } from './cells/repo_name'
 
-const RenderOwner = (props: GridRenderCellParams<OwnerInfo>) => {
-  const { value } = props
-  return (
-    <>
-      <Avatar
-        src={value?.avatar_url}
-        alt={value?.login}
-        sx={{ marginRight: '1rem' }}
-      />
-      <strong>{value?.login}</strong>
-    </>
-  )
-}
 
 export const SearchGrid = (): JSX.Element => {
   const forks_url = useAppSelector((state) => state.repoInfo.info?.forks_url)
