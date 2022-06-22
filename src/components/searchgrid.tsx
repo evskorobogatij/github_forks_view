@@ -4,6 +4,7 @@ import { Avatar } from '@mui/material'
 import { DataGrid, GridColDef, GridRenderCellParams } from '@mui/x-data-grid'
 import { loadRepoForksFx } from '@store/repoForks/repoForksSlice'
 import { useEffect } from 'react'
+import { RenderRepoName } from './cells/repo_name'
 
 const RenderOwner = (props: GridRenderCellParams<OwnerInfo>) => {
   const { value } = props
@@ -26,7 +27,12 @@ export const SearchGrid = (): JSX.Element => {
   const dispatch = useAppDispatch()
 
   const columns: GridColDef[] = [
-    { field: 'full_name', headerName: 'Наименование репозитория', width: 340,  },
+    {
+      field: 'full_name',
+      headerName: 'Наименование репозитория',
+      width: 340,
+      renderCell: RenderRepoName
+    },
     {
       field: 'owner',
       headerName: 'Владелец',
