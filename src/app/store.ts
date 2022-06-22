@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
-import repoInfoReducer from '../store/repoInfo/repoInfoSlice'
+import repoInfoReducer from '@store/repoInfo/repoInfoSlice'
+import repoForksReducers from '@store/repoForks/repoForksSlice'
 
 export const store = configureStore({
   reducer: {
-    repoInfo: repoInfoReducer
+    repoInfo: repoInfoReducer,
+    repoForks: repoForksReducers
   }
 })
 

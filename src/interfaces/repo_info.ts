@@ -1,14 +1,17 @@
+
+export interface OwnerInfo {
+  login: string
+    avatar_url: string
+}
 export interface RepoInfo {
   name: string
   full_name: string
-  owner: {
-    login: string
-    avatar_url: string
-  }
+  owner: OwnerInfo
   forks: number
   stargazers_count: number
   description: string
   fork: boolean
+  forks_url: string
 }
 
 export interface NotFoundRepo {
