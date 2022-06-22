@@ -1,8 +1,12 @@
 import { InputBase } from '@mui/material'
 import { styled, alpha } from '@mui/material/styles'
 import SearchIcon from '@mui/icons-material/Search'
-import { KeyboardEvent, useState } from 'react'
-
+import { KeyboardEvent, useMemo, useState } from 'react'
+import {
+  useSearchParams,
+  useNavigate,
+  createSearchParams
+} from 'react-router-dom'
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -46,11 +50,28 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export const ToolbarSearch = () => {
   const [search, setSearch] = useState('')
+  const [isError, setIsError] = useState(false)
+  const [searchParams] = useSearchParams()
+
+  const navigate = useNavigate()
+
+  const repoName = useMemo(() => searchParams.get('repository'), [searchParams])
+
+  const handleSearch = () => {
+    const t = search.split('/')
+    console.log(t.length)
+    if (t.length !== 2) setIsError(true)
+    else
+      navigate({
+        pathname: '/search',
+        search: createSearchParams({ repository: search }).toString()
+      })
+  }
 
   const handleKeys = (
     e: KeyboardEvent<HTMLTextAreaElement | HTMLInputElement>
   ) => {
-    // if (e.key === 'Enter') handleSearch()
+    if (e.key === 'Enter') handleSearch()
   }
 
   return (
@@ -61,9 +82,10 @@ export const ToolbarSearch = () => {
       <StyledInputBase
         placeholder="Введите имя репозитория в формате владелец/имя_репозитория и нажмите <Enter>"
         inputProps={{ 'aria-label': 'search' }}
-        // defaultValue={search}
-        value={search}
+        defaultValue={repoName}
         onChange={(e) => setSearch(e.target.value)}
+        onKeyDown={handleKeys}
+        error={isError}
       />
     </Search>
   )
