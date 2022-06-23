@@ -1,7 +1,7 @@
 import { InputBase } from '@mui/material'
 import { styled, alpha } from '@mui/material/styles'
 import SearchIcon from '@mui/icons-material/Search'
-import { KeyboardEvent, useMemo, useState } from 'react'
+import { KeyboardEvent, useEffect, useMemo, useState } from 'react'
 import {
   useSearchParams,
   useNavigate,
@@ -74,6 +74,10 @@ export const ToolbarSearch = () => {
     if (e.key === 'Enter') handleSearch()
   }
 
+  useEffect(() => {
+    if (repoName) setSearch(repoName)
+  }, [repoName])
+
   return (
     <Search>
       <SearchIconWrapper>
@@ -83,6 +87,7 @@ export const ToolbarSearch = () => {
         placeholder="Введите имя репозитория в формате владелец/имя_репозитория и нажмите <Enter>"
         inputProps={{ 'aria-label': 'search' }}
         defaultValue={repoName}
+        value={search}
         onChange={(e) => setSearch(e.target.value)}
         onKeyDown={handleKeys}
         error={isError}
