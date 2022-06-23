@@ -7,13 +7,19 @@ import {
   OutlinedInput
 } from '@mui/material'
 import ClearIcon from '@mui/icons-material/Clear'
-import { KeyboardEvent, useEffect, useState } from 'react'
+import SearchIcon from '@mui/icons-material/Search'
+import { KeyboardEvent, useEffect, useMemo, useState } from 'react'
 import { useNavigate, createSearchParams } from 'react-router-dom'
 
 export const SearchLine = () => {
   const [search, setSearch] = useState('')
   const [isError, setIsError] = useState(false)
   const navigate = useNavigate()
+
+  const correctRepoName = useMemo(
+    () => search.split('/').length === 2 && search.split('/')[1].length > 0,
+    [search]
+  )
 
   const clearSearch = () => {
     setSearch('')
@@ -26,9 +32,7 @@ export const SearchLine = () => {
   }
 
   const handleSearch = () => {
-    const t = search.split('/')
-    console.log(t.length)
-    if (t.length !== 2) setIsError(true)
+    if (!correctRepoName) setIsError(true)
     else
       navigate({
         pathname: '/search',
@@ -59,8 +63,19 @@ export const SearchLine = () => {
           <>
             {search && (
               <InputAdornment position={'end'}>
-                <IconButton onClick={() => clearSearch()} size="large">
+                <IconButton onClick={clearSearch} size="large">
                   <ClearIcon />
+                </IconButton>
+              </InputAdornment>
+            )}
+            {correctRepoName && (
+              <InputAdornment position={'end'}>
+                <IconButton
+                  onClick={handleSearch}
+                  size="large"
+                  sx={{ color: (theme) => theme.palette.primary.main }}
+                >
+                  <SearchIcon />
                 </IconButton>
               </InputAdornment>
             )}
