@@ -30,10 +30,10 @@ export const useConfirmDlg = ({
   }
   const close = () => setIsOpen(false)
 
-  const handleAccept = () => {
+  const handleAccept = useCallback(() => {
     close()
     acceptAction()
-  }
+  }, [acceptAction])
 
   const DialogBox = useCallback(
     () => (
@@ -46,13 +46,17 @@ export const useConfirmDlg = ({
           <Button variant="outlined" onClick={close}>
             Отмена
           </Button>
-          <Button variant="contained" onClick={handleAccept} color={!isDanger ? 'primary' : 'error'}>
+          <Button
+            variant="contained"
+            onClick={handleAccept}
+            color={!isDanger ? 'primary' : 'error'}
+          >
             {actionTitle}
           </Button>
         </DialogActions>
       </Dialog>
     ),
-    [isOpen, close, handleAccept, title, message]
+    [isOpen, title, message, handleAccept, isDanger, actionTitle]
   )
 
   return { open, DialogBox }

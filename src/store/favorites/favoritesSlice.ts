@@ -7,13 +7,13 @@ const loadState = () => {
     if (serialState === null) {
       return undefined
     }
-    return JSON.parse(serialState) as Array<Number>
+    return JSON.parse(serialState) as Array<number>
   } catch (err) {
     return undefined
   }
 }
 
-const initial: Array<Number> = loadState() || []
+const initial: Array<number> = loadState() || []
 
 export const favoritesSlice = createSlice({
   name: 'favorites',

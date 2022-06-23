@@ -27,7 +27,9 @@ export const repoInfoSlice = createSlice({
   initialState,
   reducers: {
     init: (state) => {
-      state = { loading: false, info: undefined, error: false }
+      state.loading = false
+      state.error = false
+      state.info = undefined
     }
   },
   extraReducers: (builder) => {
