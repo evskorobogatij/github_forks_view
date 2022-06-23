@@ -15,7 +15,7 @@ export const SearchPagination = () => {
   const pageCount = useMemo(() => (forks ? Math.round(forks / 30) : 1), [forks])
   return (
     <>
-      {forks && (
+      {pageCount > 1 && (
         <Pagination
           count={pageCount}
           page={Number(searchParams.get('page')) || 1}
