@@ -3,6 +3,7 @@ export interface OwnerInfo {
   avatar_url: string
 }
 export interface RepoInfo {
+  id: number
   name: string
   full_name: string
   owner: OwnerInfo

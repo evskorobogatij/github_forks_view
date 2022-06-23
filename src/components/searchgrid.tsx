@@ -6,6 +6,7 @@ import { RenderOwner } from './cells/owner'
 import { RenderRepoName } from './cells/repo_name'
 import { useSearchParams } from 'react-router-dom'
 import { RenderLink } from './cells/link'
+import { RenderFavorite } from './cells/favorite'
 
 export const SearchGrid = (): JSX.Element => {
   const forks_url = useAppSelector((state) => state.repoInfo.info?.forks_url)
@@ -43,7 +44,12 @@ export const SearchGrid = (): JSX.Element => {
       flex: 1,
       renderCell: RenderLink
     },
-    { field: 'isFavorite', headerName: 'Избранное', width: 140 }
+    {
+      field: 'isFavorite',
+      headerName: 'Избранное',
+      width: 140,
+      renderCell: RenderFavorite
+    }
   ]
 
   useEffect(() => {
