@@ -12,7 +12,10 @@ export const SearchPagination = () => {
   }
 
   const forks = useAppSelector((state) => state.repoInfo.info?.forks)
-  const pageCount = useMemo(() => (forks ? Math.round(forks / 30) : 1), [forks])
+  const pageCount = useMemo(
+    () => (forks ? Math.floor(forks / 30) + 1 : 1),
+    [forks]
+  )
   return (
     <>
       {pageCount > 1 && (
